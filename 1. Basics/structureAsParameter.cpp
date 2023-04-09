@@ -41,7 +41,8 @@ int main(){
     func2(&r2);
     cout<<"Lenght: "<<r2.len<<" Width: "<<r2.wid<<endl;
 
-    struct rectangle *ptr=func3();
+    rectangle *ptr;
+    ptr=func3();
     cout<<ptr->len<<" "<<ptr->wid<<endl;
 
     return 0;

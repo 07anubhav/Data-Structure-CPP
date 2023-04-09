@@ -16,14 +16,13 @@ void create(int A[],int n){
     head->next=NULL;
     last=head;
 
-    for(i=0;i<n;i++){
+    for(i=1;i<n;i++){
         temp=new Node;
         temp->data=A[i];
         temp->next=NULL;
         last->next=temp;
         last=temp;
     }
-
 }
 
 void display(Node *p){
@@ -35,7 +34,7 @@ void display(Node *p){
 }
 
 int main(){
-    int A[]={3,4,7,10,15};
+    int A[]={3,4,7,200,15};
     create(A,5);
     display(head);
     return 0;
