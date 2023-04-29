@@ -4,7 +4,7 @@ using namespace std;
 struct Node{
     int data;
     Node *next;
-}*head=NULL;
+}*head=NULL,*last=NULL;
 
 void create(int A[],int n){
     int i;
@@ -24,21 +24,34 @@ void create(int A[],int n){
     }
 }
 
-int count(){
+void display(){
     Node *p=head;
-    int c=0;
-
-    while(p!=0){
-        c++;
+    while(p!=NULL){
+        cout<<p->data<<" ";
         p=p->next;
     }
-    return c;
+}
+
+void insertLast(int x){
+    Node *temp = new Node;
+    temp->data=x;
+    temp->next=NULL;
+
+    if(head==NULL){
+        head=last=temp;
+    }
+    else{
+        last->next=temp;
+        last=temp;
+    }
 }
 
 int main()
 {
-    int A[]={3,4,7,0,15};
-    create(A,5);
-    cout<<"Number of nodes in linked list: "<<count();
+    insertLast(10);
+    insertLast(20);
+    insertLast(30);
+    display();
+
     return 0;
 }

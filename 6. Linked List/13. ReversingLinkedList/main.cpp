@@ -24,21 +24,33 @@ void create(int A[],int n){
     }
 }
 
-int count(){
+void display(){
     Node *p=head;
-    int c=0;
-
-    while(p!=0){
-        c++;
+    while(p!=NULL){
+        cout<<p->data<<" ";
         p=p->next;
     }
-    return c;
+}
+
+void reverseLinkedList(){
+    Node *r=NULL,*q=NULL,*p=head;
+
+    while(p!=NULL){
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }
+    head=q;
 }
 
 int main()
 {
-    int A[]={3,4,7,0,15};
-    create(A,5);
-    cout<<"Number of nodes in linked list: "<<count();
+    int A[]={1,2,3,4,5,6};
+    create(A,6);
+
+    reverseLinkedList();
+    display();
+
     return 0;
 }

@@ -24,21 +24,46 @@ void create(int A[],int n){
     }
 }
 
-int count(){
+void display(){
+    Node *p=head;
+    while(p!=NULL){
+        cout<<p->data<<" ";
+        p=p->next;
+    }
+}
+int countNodes(){
     Node *p=head;
     int c=0;
 
-    while(p!=0){
+    while(p!=NULL){
         c++;
         p=p->next;
     }
     return c;
 }
 
+void removeDuplicates(){
+    Node *q=head,*p=head->next;
+
+    while(p!=NULL){
+        if(q->data!=p->data){
+            q=p;
+            p=p->next;
+        }
+        else{
+            q->next=p->next;
+            delete p;
+            p=q->next;
+        }
+    }
+}
+
 int main()
 {
-    int A[]={3,4,7,0,15};
-    create(A,5);
-    cout<<"Number of nodes in linked list: "<<count();
+    int A[]={3,5,5,8,8,8};
+    create(A,6);
+    removeDuplicates();
+    display();
+
     return 0;
 }

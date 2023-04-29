@@ -32,40 +32,35 @@ void display(){
     }
 }
 
-Node* linearSearch(Node *p,int key){
-    while(p!=NULL){
-        if(key==p->data){
-            return p;
-        }
-        p=p->next;
+int deleteAtPos(int pos){
+    int valueDeleted;
+    Node *p=head,*tail=NULL;
+
+    if(pos==1){
+        head=head->next;
+        valueDeleted = p->data;
+        delete p;
     }
-    return NULL;
+    else{
+        for(int i=0;i<pos-1 && p;i++){
+            tail=p;
+            p=p->next;
+        }
+        if(p!=NULL){
+            tail->next=p->next;
+            valueDeleted=p->data;
+            delete p;
+        }
+    }
+    return valueDeleted;
 }
 
-Node* linearSearchAdvance(Node *p,int key){
-    Node *q=NULL;
-    while(p!=NULL){
-        if(key==p->data){
-            q->next=p->next;
-            p->next=head;
-            head=p;
-
-            return p;
-        }
-        q=p;
-        p=p->next;
-    }
-    return NULL;
-}
 int main()
 {
-    int A[]={3,4,7,0,15,34,65,1,76,55};
+    int A[]={3,5,9,15,0,7,8,23,1,26};
     create(A,10);
 
-    Node *ans;
-    ans=linearSearchAdvance(head,1);
-    ans=linearSearchAdvance(head,65);
-    cout<<ans->data<<endl;
+    cout<<"Value deleted: "<<deleteAtPos(1)<<endl;
     display();
 
     return 0;

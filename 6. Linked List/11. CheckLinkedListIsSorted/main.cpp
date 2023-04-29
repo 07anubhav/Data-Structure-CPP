@@ -24,21 +24,48 @@ void create(int A[],int n){
     }
 }
 
-int count(){
+int countNodes(){
     Node *p=head;
     int c=0;
 
-    while(p!=0){
+    while(p!=NULL){
         c++;
         p=p->next;
     }
     return c;
 }
 
+int checkSorted(){
+    Node *p=head,*tail=NULL;
+    int flag=1;
+
+    while(p->next != NULL){
+        tail=p;
+        p=p->next;
+
+        if(tail->data < p->data){
+            flag++;
+        }
+        else{
+            return 0;
+        }
+    }
+    return flag;
+}
+
 int main()
 {
-    int A[]={3,4,7,0,15};
+    int A[]={3,5,8,9,11};
     create(A,5);
-    cout<<"Number of nodes in linked list: "<<count();
+
+    cout<<checkSorted()<<endl;
+
+    if(checkSorted() == countNodes()){
+        cout<<"Linked list is sorted"<<endl;
+    }
+    else{
+        cout<<"Linked list is not sorted"<<endl;
+    }
+
     return 0;
 }
